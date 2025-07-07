@@ -41,7 +41,7 @@ Ideal for  bug bounty recon,  OSINT,  pentest learning, or just deep inspection 
 ##  How to Use
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/file-enumeration.git
+git clone https://github.com/kamronsafar/file-enumeration.git
 cd file-enumeration
 chmod +x bash.sh
 ./bash.sh
