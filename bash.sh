@@ -1,7 +1,7 @@
-read -p "Enter the website URL (e.g. https://example.com): " url
+read -p "Enter the website URL (https://example.com): " url
 mkdir -p downloads
 
-echo "scaning page..."
+echo "scaning page.."
 html=$(curl -s "$url")
 
 declare -A patterns=(
@@ -22,7 +22,7 @@ declare -A patterns=(
 
 
 declare -a choices
-echo -e "\n📂 File types found:"
+echo -e "\n File types found:"
 i=1
 for type in "${!patterns[@]}"; do
     matches=$(echo "$html" | grep -oP "${patterns[$type]}" | cut -d'"' -f1 | sort -u)
@@ -34,7 +34,7 @@ for type in "${!patterns[@]}"; do
 done
 echo "0) ALL"
 
-read -p "Enter your choice(s) (e.g. 1 3 or 0): " -a selected
+read -p "Enter your choice (e.g. 1 3 or 0): " -a selected
 
 if [[ " ${selected[*]} " =~ " 0 " ]]; then
     selected=("${!choices[@]}")
@@ -42,7 +42,7 @@ fi
 
 for index in "${selected[@]}"; do
     key="${choices[$((index-1))]}"
-    echo -e "\n⬇️ Downloading $key filles..."
+    echo -e "\n Downloading $key filles..."
     matches=$(echo "$html" | grep -oP "${patterns[$key]}" | cut -d'"' -f1 | sort -u)
     
     for link in $matches; do
